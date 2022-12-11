@@ -3,13 +3,25 @@
 
 @@include('./src/html/includes/head.html', {
 	"title": "Mental calculation",
-	"description": "Устный счёт."
+	"description": "Mental calculation."
 })
 
 <body class="page__body">
   <div style="display: none;">
     @@include('./build/img/sprite.svg')
   </div>
+
+  <main class="page__main">
+    <h1 class="visually-hidden">Mental calculation</h1>
+
+		<section class="page__calc calc">
+      <span class="calc__operand" id="first-operand">111</span>
+      <span class="calc__operation" id="operation">&times;</span>
+			<span class="calc__operand" id="second-operand">222</span>
+      =
+			<output class="calc__result" id="result">?</output>
+		</section>
+  </main>
 
   <script src="js/script.min.js"></script>
 </body>
