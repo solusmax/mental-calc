@@ -2,25 +2,21 @@
 <html class="page" lang="ru">
 
 @@include('./src/html/includes/head.html', {
-	"title": "Mental calculation",
-	"description": "Mental calculation."
+  "title": "Тренажёр устного счёта",
+  "description": "Тренажёр устного счёта."
 })
 
 <body class="page__body">
-  <div style="display: none;">
-    @@include('./build/img/sprite.svg')
-  </div>
-
   <main class="page__main">
-    <h1 class="visually-hidden">Mental calculation</h1>
+    <h1 class="visually-hidden">Тренажёр устного счёта</h1>
 
-		<section class="page__calc calc">
-      <span class="calc__operand" id="first-operand">111</span>
-      <span class="calc__operation" id="operation">&times;</span>
-			<span class="calc__operand" id="second-operand">222</span>
-      =
-			<output class="calc__result" id="result">?</output>
-		</section>
+    <section class="page__calc calc">
+      <span class="calc__operand" id="first-operand" tabindex="0">481</span>
+      <span class="calc__operation">&times;</span>
+      <span class="calc__operand" id="second-operand" tabindex="0">516</span>
+      <span class="calc__equals">=</span>
+      <output class="calc__result" id="result" tabindex="0">?</output>
+    </section>
   </main>
 
   <script src="js/script.min.js"></script>
