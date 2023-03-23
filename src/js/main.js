@@ -8,6 +8,18 @@ const CLEARED_RESULT_SYMBOL = '?';
 let currentFirstOperandSize = MIN_OPERAND_SIZE;
 let currentSecondOperandSize = MIN_OPERAND_SIZE;
 
+let isStorageSupport = true;
+
+try {
+  const firstOperandSizeLocalStorageValue = localStorage.getItem('operand-1-size');
+  const secondOperandSizeLocalStorageValue = localStorage.getItem('operand-2-size');
+
+  currentFirstOperandSize = firstOperandSizeLocalStorageValue ? Number(firstOperandSizeLocalStorageValue) : currentFirstOperandSize;
+  currentSecondOperandSize = secondOperandSizeLocalStorageValue ? Number(secondOperandSizeLocalStorageValue) : currentSecondOperandSize;
+} catch (err) {
+  isStorageSupport = false;
+}
+
 const firstOperandNode = document.querySelector('#first-operand');
 const secondOperandNode = document.querySelector('#second-operand');
 const resultNode = document.querySelector('#result');
@@ -32,11 +44,22 @@ const changeOperandSize = (operand) => {
   switch (operand) {
     case 1:
       currentFirstOperandSize = increaseNumberInLoop(currentFirstOperandSize, MIN_OPERAND_SIZE, MAX_OPERAND_SIZE);
+
+      if (isStorageSupport) {
+        localStorage.setItem('operand-1-size', currentFirstOperandSize);
+      }
+
       updateOperandNumber(1);
       break;
     case 2:
       currentSecondOperandSize = increaseNumberInLoop(currentSecondOperandSize, MIN_OPERAND_SIZE, MAX_OPERAND_SIZE);
+
+      if (isStorageSupport) {
+        localStorage.setItem('operand-2-size', currentSecondOperandSize);
+      }
+
       updateOperandNumber(2);
+      break;
   }
 };
 
