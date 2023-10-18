@@ -1,5 +1,10 @@
 import 'focus-visible';
-import { getRandomOperand, increaseNumberInLoop, isEnterEvent, isSpaceEvent } from './utils.js';
+import {
+  getRandomOperand,
+  increaseNumberInLoop,
+  isEnterEvent,
+  isSpaceEvent,
+} from './utils.js';
 
 const MIN_OPERAND_SIZE = 3;
 const MAX_OPERAND_SIZE = 6;
@@ -11,11 +16,17 @@ let currentSecondOperandSize = MIN_OPERAND_SIZE;
 let isStorageSupport = true;
 
 try {
-  const firstOperandSizeLocalStorageValue = localStorage.getItem('operand-1-size');
-  const secondOperandSizeLocalStorageValue = localStorage.getItem('operand-2-size');
+  const firstOperandSizeLocalStorageValue =
+    localStorage.getItem('operand-1-size');
+  const secondOperandSizeLocalStorageValue =
+    localStorage.getItem('operand-2-size');
 
-  currentFirstOperandSize = firstOperandSizeLocalStorageValue ? Number(firstOperandSizeLocalStorageValue) : currentFirstOperandSize;
-  currentSecondOperandSize = secondOperandSizeLocalStorageValue ? Number(secondOperandSizeLocalStorageValue) : currentSecondOperandSize;
+  currentFirstOperandSize = firstOperandSizeLocalStorageValue
+    ? Number(firstOperandSizeLocalStorageValue)
+    : currentFirstOperandSize;
+  currentSecondOperandSize = secondOperandSizeLocalStorageValue
+    ? Number(secondOperandSizeLocalStorageValue)
+    : currentSecondOperandSize;
 } catch (err) {
   isStorageSupport = false;
 }
@@ -30,7 +41,9 @@ const updateOperandNumber = (operand) => {
       firstOperandNode.textContent = getRandomOperand(currentFirstOperandSize);
       break;
     case 2:
-      secondOperandNode.textContent = getRandomOperand(currentSecondOperandSize);
+      secondOperandNode.textContent = getRandomOperand(
+        currentSecondOperandSize,
+      );
       break;
   }
 };
@@ -43,7 +56,11 @@ const updateOperands = () => {
 const changeOperandSize = (operand) => {
   switch (operand) {
     case 1:
-      currentFirstOperandSize = increaseNumberInLoop(currentFirstOperandSize, MIN_OPERAND_SIZE, MAX_OPERAND_SIZE);
+      currentFirstOperandSize = increaseNumberInLoop(
+        currentFirstOperandSize,
+        MIN_OPERAND_SIZE,
+        MAX_OPERAND_SIZE,
+      );
 
       if (isStorageSupport) {
         localStorage.setItem('operand-1-size', currentFirstOperandSize);
@@ -52,7 +69,11 @@ const changeOperandSize = (operand) => {
       updateOperandNumber(1);
       break;
     case 2:
-      currentSecondOperandSize = increaseNumberInLoop(currentSecondOperandSize, MIN_OPERAND_SIZE, MAX_OPERAND_SIZE);
+      currentSecondOperandSize = increaseNumberInLoop(
+        currentSecondOperandSize,
+        MIN_OPERAND_SIZE,
+        MAX_OPERAND_SIZE,
+      );
 
       if (isStorageSupport) {
         localStorage.setItem('operand-2-size', currentSecondOperandSize);
@@ -64,7 +85,9 @@ const changeOperandSize = (operand) => {
 };
 
 const setResult = () => {
-  resultNode.textContent = Number(firstOperandNode.textContent) * Number(secondOperandNode.textContent);
+  resultNode.textContent =
+    Number(firstOperandNode.textContent) *
+    Number(secondOperandNode.textContent);
 };
 
 const clearResult = () => {
@@ -115,7 +138,6 @@ const onResultClick = () => {
     resultAction();
   };
 };
-
 
 const onFirstOperandKeydown = () => {
   return (evt) => {
